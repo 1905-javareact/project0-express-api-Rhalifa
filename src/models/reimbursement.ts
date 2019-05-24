@@ -1,5 +1,4 @@
 export class Reimbursement {
-
     reimbursement_id: number
     reimbursement_author: number
     reimbursement_amount: number
@@ -12,7 +11,6 @@ export class Reimbursement {
 
     constructor(reimbursement_id: number, reimbursement_author: number, reimbursement_amount: number, date_submitted: number,
         date_resolved: number, description: string, resolver: number, status: number, type_reimb: number) {
-
             this.reimbursement_id = reimbursement_id
             this.reimbursement_author = reimbursement_author
             this.reimbursement_amount = reimbursement_amount

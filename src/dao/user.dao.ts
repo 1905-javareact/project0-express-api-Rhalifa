@@ -62,7 +62,8 @@ export async function getUserByID(user_id : number) {
     }
 }
 
-export async function updateUser(user_id: number) {
+export async function updateUser(user_id: number, username: string, user_pass: string, firstname: string, 
+    lastname: string, email: string, role_user: string) {
 
     let client: PoolClient
 
@@ -70,12 +71,12 @@ export async function updateUser(user_id: number) {
 
         client = await connectionPool.connect()
 
-        let query = 'UPDATE user_table SET username = $1, user_pass = $2, firstname = $3, lastname = $4, email = $5'
-        let result = await client.query(query, [user_id])
+        let query = 'UPDATE "reimbursement".user_table SET username = $1, user_pass = $2, firstname = $3, lastname = $4, email = $5, role_user = $6 WHERE user_id = $7 returning *'
+        let result = await client.query(query, [username, user_pass, firstname, lastname, email, role_user, user_id])
         return sqlUsertojsUSer(result.rows[0])
     }
     catch(err) {
-        console.log('error')
+        console.log(err)
         return 'Internal server error'
     } finally {
         client && client.release()

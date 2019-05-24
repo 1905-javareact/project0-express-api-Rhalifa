@@ -25,7 +25,7 @@ userRouter.post('', async (req, res) => {
 })
 
 userRouter.get('', async (req, res) => {
-    if (req.session.user.role_user === 1) {
+    if ((req.session.user.role_user === 1) || (req.session.user.role_user === 2)) {
         res.json(await getAllUserService())
     }else {
        res.sendStatus(401)
@@ -35,7 +35,7 @@ userRouter.get('', async (req, res) => {
 userRouter.get('/:id', async (req, res) => {
     let params = +req.params.id
 
-    if (req.session.user.role_user === 1) {
+    if ((req.session.user.role_user === 1)|| (req.session.user.role_user === 2)) {
         
         let user = await getUserByIDService(params)
         res.json(user)
@@ -47,10 +47,12 @@ userRouter.get('/:id', async (req, res) => {
 
 userRouter.patch('/users/id', async (req, res) => {
 
-    let params = +req.params.id
+    //let params = +req.params.id
 
-    if (req.session.user.role_user === 1) {
-        let user = await updateUserService(params)
+    const { user_id, username, user_pass, firstname, lastname, email, role_user } = req.body
+
+    if (req.session.user.role_user === 2) {
+        let user = await updateUserService(user_id, username, user_pass, firstname, lastname, email, role_user)  
         res.json(user)
     } else {
         res.sendStatus(401)

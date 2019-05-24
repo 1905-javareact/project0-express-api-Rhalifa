@@ -17,7 +17,7 @@ app.use('/users', userRouter)
 
 app.use('/reimbursement', reimbursementRouter)
 
-app.use('/', reimbursementRouter)
+
 
 app.listen(9050, () => {
     console.log('app is listening')

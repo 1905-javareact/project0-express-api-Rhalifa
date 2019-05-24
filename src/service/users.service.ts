@@ -25,7 +25,8 @@ export async function getUserByIDService(user_id: number) {
     return await getUserByID(user_id)
 }
 
-export async function updateUserService(user_id: number) {
+export async function updateUserService(user_id: number, username:string, user_pass: string, firstname: string, 
+    lastname: string, email: string, role_user: string) {
 
-    return await updateUser(user_id)
+    return await updateUser(user_id, username, user_pass, firstname, lastname, email, role_user)
 }

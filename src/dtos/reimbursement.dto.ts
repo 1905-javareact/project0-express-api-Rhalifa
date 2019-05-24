@@ -1,6 +1,5 @@
 
 export class ReimbursementDTO {
-
     reimbursement_id: number
     reimbursement_author: number
     reimbursement_amount: number
@@ -10,5 +9,4 @@ export class ReimbursementDTO {
     resolver: number
     status: number
     type_reimb: number
-
 }
